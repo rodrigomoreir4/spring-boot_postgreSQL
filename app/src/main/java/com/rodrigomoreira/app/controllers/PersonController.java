@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rodrigomoreira.app.domain.Person;
-import com.rodrigomoreira.app.domain.PersonDTO;
+import com.rodrigomoreira.app.dtos.PersonDTO;
 import com.rodrigomoreira.app.services.PersonService;
 
 @RestController

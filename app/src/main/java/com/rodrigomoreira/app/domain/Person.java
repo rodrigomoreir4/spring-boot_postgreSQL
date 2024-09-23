@@ -27,4 +27,9 @@ public class Person {
     private String name;
     private String registration;
 
+    public Person(String name, String registration) {
+        this.name = name;
+        this.registration = registration;
+    }
+
 }

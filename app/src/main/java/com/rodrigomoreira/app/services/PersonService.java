@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rodrigomoreira.app.domain.Person;
-import com.rodrigomoreira.app.domain.PersonDTO;
+import com.rodrigomoreira.app.dtos.PersonDTO;
 import com.rodrigomoreira.app.repositories.PersonRepository;
 
 @Service

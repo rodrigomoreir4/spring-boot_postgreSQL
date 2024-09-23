@@ -1,0 +1,5 @@
+ALTER TABLE persons
+ALTER COLUMN name SET NOT NULL;
+
+ALTER TABLE persons
+ALTER COLUMN registration SET NOT NULL;

@@ -1,7 +1,9 @@
 package com.rodrigomoreira.app.services;
 
 import java.util.List;
+import java.util.UUID;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,15 @@ public class PersonService {
     public List<PersonDTO> getAllPersons() {
         List<PersonDTO> personList = personRepository.findAll().stream().map(PersonDTO::new).toList();
         return personList;
+    }
+
+    public Person findPersonByRegistration(String registration) throws Exception {
+        return personRepository.findPersonByRegistration(registration).orElseThrow(
+                () -> new EntityNotFoundException("Person not found")
+        );
+    }
+
+    public void deletePersonByUUID(UUID id) {
+        personRepository.deleteById(id);
     }
 }

@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+  springboot-app2:
+    container_name: spring-app
+    restart: always
+    image: rodrigomoreir4/springboot-app2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/records
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      - postgres-db
+    networks:
+      - spring-postgres-network
+
+  postgres-db:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: records
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - spring-postgres-network
+
+volumes:
+  postgres-data:
+
+networks:
+  spring-postgres-network:
+    driver: bridge

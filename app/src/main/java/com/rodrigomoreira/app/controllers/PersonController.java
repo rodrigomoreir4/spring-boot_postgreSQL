@@ -40,16 +40,14 @@ public class PersonController {
 
     @PutMapping("/{registration}")
     public ResponseEntity<Person> updatePerson(@PathVariable String registration, @RequestBody Person updatedPerson) throws  Exception {
-        Person person = personService.findPersonByRegistration(registration);
-        person.setName(updatedPerson.getName());
-        person.setRegistration(updatedPerson.getRegistration());
+        Person person = personService.updatePerson(registration, updatedPerson);
         return ResponseEntity.ok(personService.createPerson(person));
     }
 
+
     @DeleteMapping("/{registration}")
     public ResponseEntity<Void> deletePersonByRegistration(@PathVariable String registration) throws  Exception{
-        Person person = personService.findPersonByRegistration(registration);
-        personService.deletePersonByUUID(person.getId());
+        personService.deletePersonByUUID(personService.findPersonByRegistration(registration).getId());
         return ResponseEntity.noContent().build();
     }
 

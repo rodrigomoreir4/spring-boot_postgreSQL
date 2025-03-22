@@ -26,6 +26,13 @@ public class PersonService {
         return personList;
     }
 
+    public Person updatePerson(String registration, Person updatedPerson) throws Exception{
+        Person person = findPersonByRegistration(registration);
+        person.setName(updatedPerson.getName());
+        person.setRegistration(updatedPerson.getRegistration());
+        return person;
+    }
+
     public Person findPersonByRegistration(String registration) throws Exception {
         return personRepository.findPersonByRegistration(registration).orElseThrow(
                 () -> new EntityNotFoundException("Person not found")
